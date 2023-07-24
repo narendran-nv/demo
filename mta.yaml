@@ -1,7 +1,73 @@
 _schema-version: '3.1'
 ID: demo
+description: A simple CAP project.
 version: 1.0.0
-description: "A simple CAP project."
+modules:
+  - name: demo-srv
+    type: nodejs
+    path: srv
+    requires:
+      - name: demo-db
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: '${default-url}'
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+  - name: demo-db-deployer
+    type: hdb
+    path: db
+    requires:
+      - name: demo-db
+    parameters:
+      buildpack: nodejs_buildpack
+  - name: app
+    type: approuter.nodejs
+    path: app
+    requires:
+      - name: demo_html_repo_runtime
+      - name: uaa_demo
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api
+          url: '~{srv-url}'
+          forwardAuthToken: true
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+  - name: demo_ui_deployer
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: demo_html_repo_host
+        parameters:
+          content-target: true
+resources:
+  - name: demo-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: demo_html_repo_runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+  - name: uaa_demo
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: demo-xsuaa-service
+      service-plan: application
+  - name: demo_html_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
 parameters:
   enable-parallel-deployments: true
 build-parameters:
@@ -9,32 +75,3 @@ build-parameters:
     - builder: custom
       commands:
         - npx -p @sap/cds-dk cds build --production
-modules:
-  - name: demo-srv
-    type: nodejs
-    path: srv
-    parameters:
-      buildpack: nodejs_buildpack
-    build-parameters:
-      builder: npm-ci
-    provides:
-      - name: srv-api # required by consumers of CAP services (e.g. approuter)
-        properties:
-          srv-url: ${default-url}
-    requires:
-      - name: demo-db
-
-  - name: demo-db-deployer
-    type: hdb
-    path: db
-    parameters:
-      buildpack: nodejs_buildpack
-    requires:
-      - name: demo-db
-
-resources:
-  - name: demo-db
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana
-      service-plan: hdi-shared

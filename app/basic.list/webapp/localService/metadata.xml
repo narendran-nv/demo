@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="ZAPIHPS999" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="ZTHBT0053" EntityType="ZAPIHPS999.ZTHBT0053">
+                    <NavigationPropertyBinding Path="FROM_COUNTRY" Target="Countries"/>
+                    <NavigationPropertyBinding Path="TO_COUNTRY" Target="Countries"/>
+                    <NavigationPropertyBinding Path="VIA_COUNTRY" Target="Countries"/>
+                    <NavigationPropertyBinding Path="ITEMS" Target="ZTHBT0054"/>
+                </EntitySet>
+                <EntitySet Name="ZTHBT0054" EntityType="ZAPIHPS999.ZTHBT0054">
+                    <NavigationPropertyBinding Path="INVOICE" Target="ZTHBT0053"/>
+                </EntitySet>
+                <EntitySet Name="Countries" EntityType="ZAPIHPS999.Countries">
+                    <NavigationPropertyBinding Path="texts" Target="Countries_texts"/>
+                    <NavigationPropertyBinding Path="localized" Target="Countries_texts"/>
+                </EntitySet>
+                <EntitySet Name="Countries_texts" EntityType="ZAPIHPS999.Countries_texts"/>
+            </EntityContainer>
+            <EntityType Name="ZTHBT0053">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ZZH_IDATS" Type="Edm.Date"/>
+                <Property Name="ZZH_IUZEIT" Type="Edm.TimeOfDay"/>
+                <Property Name="ZZH_IUSR" Type="Edm.String"/>
+                <Property Name="ZZH_IREPID" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ZZH_UDATS" Type="Edm.Date"/>
+                <Property Name="ZZH_UUZEIT" Type="Edm.TimeOfDay"/>
+                <Property Name="ZZH_UUSR" Type="Edm.String"/>
+                <Property Name="ZZH_UREPID" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ID" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="YIL_INVOICE_ID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="SHIPPING_POINT" Type="Edm.String" MaxLength="4"/>
+                <Property Name="SOLD_TO" Type="Edm.String" MaxLength="10"/>
+                <Property Name="SHIP_TO" Type="Edm.String" MaxLength="10"/>
+                <Property Name="INCOTERMS1" Type="Edm.String" MaxLength="3"/>
+                <Property Name="INCOTERMS2" Type="Edm.String" MaxLength="28"/>
+                <Property Name="CURRENCY" Type="Edm.String" MaxLength="5"/>
+                <Property Name="ISSUING_DATE" Type="Edm.Date"/>
+                <Property Name="SAILING_OR_ABOUT" Type="Edm.Date"/>
+                <Property Name="AWB_DATE" Type="Edm.Date"/>
+                <Property Name="MASTER_AWB_NO" Type="Edm.String" MaxLength="35"/>
+                <Property Name="HOUSE_AWB_NO" Type="Edm.String" MaxLength="35"/>
+                <Property Name="FLIGHT_NO" Type="Edm.String" MaxLength="35"/>
+                <Property Name="FROM_CITY" Type="Edm.String" MaxLength="20"/>
+                <NavigationProperty Name="FROM_COUNTRY" Type="ZAPIHPS999.Countries">
+                    <ReferentialConstraint Property="FROM_COUNTRY_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="FROM_COUNTRY_code" Type="Edm.String" MaxLength="3"/>
+                <Property Name="TO_CITY" Type="Edm.String" MaxLength="20"/>
+                <NavigationProperty Name="TO_COUNTRY" Type="ZAPIHPS999.Countries">
+                    <ReferentialConstraint Property="TO_COUNTRY_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="TO_COUNTRY_code" Type="Edm.String" MaxLength="3"/>
+                <Property Name="VIA_CITY" Type="Edm.String" MaxLength="20"/>
+                <NavigationProperty Name="VIA_COUNTRY" Type="ZAPIHPS999.Countries">
+                    <ReferentialConstraint Property="VIA_COUNTRY_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="VIA_COUNTRY_code" Type="Edm.String" MaxLength="3"/>
+                <Property Name="TRANSPORT_MOTXT" Type="Edm.String" MaxLength="20"/>
+                <Property Name="INVOICE_NOTE1" Type="Edm.String" MaxLength="100"/>
+                <Property Name="INVOICE_NOTE2" Type="Edm.String" MaxLength="100"/>
+                <Property Name="INVOICE_NOTE3" Type="Edm.String" MaxLength="100"/>
+                <Property Name="INVOICE_NOTE4" Type="Edm.String" MaxLength="100"/>
+                <Property Name="INVOICE_NOTE5" Type="Edm.String" MaxLength="100"/>
+                <Property Name="INVOICE_NOTE6" Type="Edm.String" MaxLength="100"/>
+                <Property Name="INVOICE_NOTE7" Type="Edm.String" MaxLength="100"/>
+                <Property Name="FREIGHT" Type="Edm.String" MaxLength="11"/>
+                <Property Name="FREIGHT_FLG" Type="Edm.String" MaxLength="1"/>
+                <Property Name="INSURANCE" Type="Edm.String" MaxLength="11"/>
+                <Property Name="INSURANCE_FLG" Type="Edm.String" MaxLength="1"/>
+                <Property Name="FR_INS" Type="Edm.String" MaxLength="11"/>
+                <Property Name="FR_INS_FLG" Type="Edm.String" MaxLength="1"/>
+                <Property Name="CERTIFICATE_FEE" Type="Edm.String" MaxLength="11"/>
+                <Property Name="CERTIF_FEE_FLG" Type="Edm.String" MaxLength="1"/>
+                <Property Name="CERT_ORG_FEE" Type="Edm.String" MaxLength="11"/>
+                <Property Name="CERT_ORG_FEE_FLG" Type="Edm.String" MaxLength="1"/>
+                <Property Name="OTHERS" Type="Edm.String" MaxLength="11"/>
+                <Property Name="OTHERS_FLG" Type="Edm.String" MaxLength="1"/>
+                <Property Name="PERSON_IN_CHRG" Type="Edm.String" MaxLength="30"/>
+                <Property Name="REMARKS" Type="Edm.String" MaxLength="50"/>
+                <Property Name="LC_NO" Type="Edm.String" MaxLength="10"/>
+                <Property Name="LC_DATE" Type="Edm.Date"/>
+                <Property Name="ISSUING_BANK" Type="Edm.String" MaxLength="40"/>
+                <Property Name="TOTAL_CASE" Type="Edm.Decimal" Scale="2" Precision="13"/>
+                <Property Name="NET_WEIGHT" Type="Edm.Decimal" Scale="2" Precision="13"/>
+                <Property Name="NET_WEIGHT_UOM" Type="Edm.String" MaxLength="3"/>
+                <Property Name="GROSS_WEIGHT" Type="Edm.Decimal" Scale="2" Precision="13"/>
+                <Property Name="GROSS_WEIGHT_UOM" Type="Edm.String" MaxLength="3"/>
+                <Property Name="VOLUME" Type="Edm.Decimal" Scale="2" Precision="13"/>
+                <Property Name="VOLUME_UOM" Type="Edm.String" MaxLength="3"/>
+                <Property Name="POSID" Type="Edm.String" MaxLength="24"/>
+                <Property Name="ZZH_D_FLG" Type="Edm.String" MaxLength="1"/>
+                <NavigationProperty Name="ITEMS" Type="Collection(ZAPIHPS999.ZTHBT0054)" Partner="INVOICE">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="ZTHBT0054">
+                <Key>
+                    <PropertyRef Name="INVOICE_ID"/>
+                    <PropertyRef Name="INVOICE_ITM"/>
+                </Key>
+                <Property Name="ZZH_IDATS" Type="Edm.Date"/>
+                <Property Name="ZZH_IUZEIT" Type="Edm.TimeOfDay"/>
+                <Property Name="ZZH_IUSR" Type="Edm.String"/>
+                <Property Name="ZZH_IREPID" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ZZH_UDATS" Type="Edm.Date"/>
+                <Property Name="ZZH_UUZEIT" Type="Edm.TimeOfDay"/>
+                <Property Name="ZZH_UUSR" Type="Edm.String"/>
+                <Property Name="ZZH_UREPID" Type="Edm.String" MaxLength="40"/>
+                <NavigationProperty Name="INVOICE" Type="ZAPIHPS999.ZTHBT0053" Partner="ITEMS">
+                    <ReferentialConstraint Property="INVOICE_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="INVOICE_ID" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="INVOICE_ITM" Type="Edm.String" MaxLength="6" Nullable="false"/>
+                <Property Name="SALES_DOC" Type="Edm.String" MaxLength="10"/>
+                <Property Name="SALES_DOC_ITEM" Type="Edm.String" MaxLength="6"/>
+            </EntityType>
+            <EntityType Name="Countries">
+                <Key>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <NavigationProperty Name="texts" Type="Collection(ZAPIHPS999.Countries_texts)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="localized" Type="ZAPIHPS999.Countries_texts">
+                    <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="Countries_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" MaxLength="3" Nullable="false"/>
+            </EntityType>
+            <Annotations Target="ZAPIHPS999.ZTHBT0053/ZZH_IDATS">
+                <Annotation Term="Common.Label" String="{i18n>CreationDate}"/>
+                </Annotations>
+                <Annotations Target="ZAPIHPS999.ZTHBT0053/ZZH_IUZEIT">
+                    <Annotation Term="Common.Label" String="{i18n>CreationTime}"/>
+                    </Annotations>
+                    <Annotations Target="ZAPIHPS999.ZTHBT0053/ZZH_IUSR">
+                        <Annotation Term="Core.Computed" Bool="true"/>
+                        <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                        </Annotations>
+                        <Annotations Target="ZAPIHPS999.ZTHBT0053/ZZH_IREPID">
+                            <Annotation Term="Common.Label" String="{i18n>CreatedProgram}"/>
+                            </Annotations>
+                            <Annotations Target="ZAPIHPS999.ZTHBT0053/ZZH_UDATS">
+                                <Annotation Term="Common.Label" String="{i18n>ChangedDate}"/>
+                                </Annotations>
+                                <Annotations Target="ZAPIHPS999.ZTHBT0053/ZZH_UUZEIT">
+                                    <Annotation Term="Common.Label" String="{i18n>ChangedTime}"/>
+                                    </Annotations>
+                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/ZZH_UUSR">
+                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                        <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                        </Annotations>
+                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/ZZH_UREPID">
+                                            <Annotation Term="Common.Label" String="{i18n>ChangedProgram}"/>
+                                            </Annotations>
+                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/ID">
+                                                <Annotation Term="Common.Label" String="{i18n>ShippingInvoiceNumber}"/>
+                                                </Annotations>
+                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/YIL_INVOICE_ID">
+                                                    <Annotation Term="Common.Label" String="{i18n>YILShippingInvoiceNumber}"/>
+                                                    </Annotations>
+                                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/SHIPPING_POINT">
+                                                        <Annotation Term="Common.Label" String="{i18n>ShippingPoint=Shipping Point}"/>
+                                                        </Annotations>
+                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/SOLD_TO">
+                                                            <Annotation Term="Common.Label" String="{i18n>SoldToParty}"/>
+                                                            </Annotations>
+                                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/SHIP_TO">
+                                                                <Annotation Term="Common.Label" String="{i18n>ShipToParty}"/>
+                                                                </Annotations>
+                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/INCOTERMS1">
+                                                                    <Annotation Term="Common.Label" String="{i18n>Incoterms1}"/>
+                                                                    </Annotations>
+                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/INCOTERMS2">
+                                                                        <Annotation Term="Common.Label" String="{i18n>Incoterms2}"/>
+                                                                        </Annotations>
+                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/CURRENCY">
+                                                                            <Annotation Term="Common.Label" String="{i18n>Currency}"/>
+                                                                            </Annotations>
+                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/ISSUING_DATE">
+                                                                                <Annotation Term="Common.Label" String="{i18n>IssuingDate}"/>
+                                                                                </Annotations>
+                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/SAILING_OR_ABOUT">
+                                                                                    <Annotation Term="Common.Label" String="{i18n>SailingOnOrAbout}"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/AWB_DATE">
+                                                                                        <Annotation Term="Common.Label" String="{i18n>AWBDate}"/>
+                                                                                        </Annotations>
+                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/MASTER_AWB_NO">
+                                                                                            <Annotation Term="Common.Label" String="{i18n>MasterAWBNo}"/>
+                                                                                            </Annotations>
+                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/HOUSE_AWB_NO">
+                                                                                                <Annotation Term="Common.Label" String="{i18n>HouseAWBNo}"/>
+                                                                                                </Annotations>
+                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/FLIGHT_NO">
+                                                                                                    <Annotation Term="Common.Label" String="{i18n>FlightNo}"/>
+                                                                                                    </Annotations>
+                                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/FROM_CITY">
+                                                                                                        <Annotation Term="Common.Label" String="{i18n>FromCity}"/>
+                                                                                                        </Annotations>
+                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/FROM_COUNTRY">
+                                                                                                            <Annotation Term="Common.Label" String="{i18n>FromCountry}"/>
+                                                                                                                <Annotation Term="Core.Description" String="{i18n>CountryCode.Description}"/>
+                                                                                                                </Annotations>
+                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/FROM_COUNTRY_code">
+                                                                                                                    <Annotation Term="Common.Label" String="{i18n>FromCountry}"/>
+                                                                                                                        <Annotation Term="Common.ValueList">
+                                                                                                                            <Record Type="Common.ValueListType">
+                                                                                                                                <PropertyValue Property="Label" String="{i18n>FromCountry}"/>
+                                                                                                                                    <PropertyValue Property="CollectionPath" String="Countries"/>
+                                                                                                                                    <PropertyValue Property="Parameters">
+                                                                                                                                        <Collection>
+                                                                                                                                            <Record Type="Common.ValueListParameterInOut">
+                                                                                                                                                <PropertyValue Property="LocalDataProperty" PropertyPath="FROM_COUNTRY_code"/>
+                                                                                                                                                <PropertyValue Property="ValueListProperty" String="code"/>
+                                                                                                                                            </Record>
+                                                                                                                                            <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                                                                                <PropertyValue Property="ValueListProperty" String="name"/>
+                                                                                                                                            </Record>
+                                                                                                                                        </Collection>
+                                                                                                                                    </PropertyValue>
+                                                                                                                                </Record>
+                                                                                                                            </Annotation>
+                                                                                                                            <Annotation Term="Core.Description" String="{i18n>CountryCode.Description}"/>
+                                                                                                                            </Annotations>
+                                                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/TO_CITY">
+                                                                                                                                <Annotation Term="Common.Label" String="{i18n>ToCity}"/>
+                                                                                                                                </Annotations>
+                                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/TO_COUNTRY">
+                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>ToCountry}"/>
+                                                                                                                                        <Annotation Term="Core.Description" String="{i18n>CountryCode.Description}"/>
+                                                                                                                                        </Annotations>
+                                                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/TO_COUNTRY_code">
+                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>ToCountry}"/>
+                                                                                                                                                <Annotation Term="Common.ValueList">
+                                                                                                                                                    <Record Type="Common.ValueListType">
+                                                                                                                                                        <PropertyValue Property="Label" String="{i18n>ToCountry}"/>
+                                                                                                                                                            <PropertyValue Property="CollectionPath" String="Countries"/>
+                                                                                                                                                            <PropertyValue Property="Parameters">
+                                                                                                                                                                <Collection>
+                                                                                                                                                                    <Record Type="Common.ValueListParameterInOut">
+                                                                                                                                                                        <PropertyValue Property="LocalDataProperty" PropertyPath="TO_COUNTRY_code"/>
+                                                                                                                                                                        <PropertyValue Property="ValueListProperty" String="code"/>
+                                                                                                                                                                    </Record>
+                                                                                                                                                                    <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                                                                                                        <PropertyValue Property="ValueListProperty" String="name"/>
+                                                                                                                                                                    </Record>
+                                                                                                                                                                </Collection>
+                                                                                                                                                            </PropertyValue>
+                                                                                                                                                        </Record>
+                                                                                                                                                    </Annotation>
+                                                                                                                                                    <Annotation Term="Core.Description" String="{i18n>CountryCode.Description}"/>
+                                                                                                                                                    </Annotations>
+                                                                                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/VIA_CITY">
+                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>ViaCity}"/>
+                                                                                                                                                        </Annotations>
+                                                                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/VIA_COUNTRY">
+                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>ViaCountry}"/>
+                                                                                                                                                                <Annotation Term="Core.Description" String="{i18n>CountryCode.Description}"/>
+                                                                                                                                                                </Annotations>
+                                                                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/VIA_COUNTRY_code">
+                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>ViaCountry}"/>
+                                                                                                                                                                        <Annotation Term="Common.ValueList">
+                                                                                                                                                                            <Record Type="Common.ValueListType">
+                                                                                                                                                                                <PropertyValue Property="Label" String="{i18n>ViaCountry}"/>
+                                                                                                                                                                                    <PropertyValue Property="CollectionPath" String="Countries"/>
+                                                                                                                                                                                    <PropertyValue Property="Parameters">
+                                                                                                                                                                                        <Collection>
+                                                                                                                                                                                            <Record Type="Common.ValueListParameterInOut">
+                                                                                                                                                                                                <PropertyValue Property="LocalDataProperty" PropertyPath="VIA_COUNTRY_code"/>
+                                                                                                                                                                                                <PropertyValue Property="ValueListProperty" String="code"/>
+                                                                                                                                                                                            </Record>
+                                                                                                                                                                                            <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                                                                                                                                <PropertyValue Property="ValueListProperty" String="name"/>
+                                                                                                                                                                                            </Record>
+                                                                                                                                                                                        </Collection>
+                                                                                                                                                                                    </PropertyValue>
+                                                                                                                                                                                </Record>
+                                                                                                                                                                            </Annotation>
+                                                                                                                                                                            <Annotation Term="Core.Description" String="{i18n>CountryCode.Description}"/>
+                                                                                                                                                                            </Annotations>
+                                                                                                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/TRANSPORT_MOTXT">
+                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>TransportationModeText}"/>
+                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/INVOICE_NOTE1">
+                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>InvoiceNote1}"/>
+                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/INVOICE_NOTE2">
+                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>InvoiceNote2}"/>
+                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/INVOICE_NOTE3">
+                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>InvoiceNote3}"/>
+                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/INVOICE_NOTE4">
+                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>InvoiceNote4}"/>
+                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/INVOICE_NOTE5">
+                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>InvoiceNote5}"/>
+                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/INVOICE_NOTE6">
+                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>InvoiceNote6}"/>
+                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/INVOICE_NOTE7">
+                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>InvoiceNote7}"/>
+                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/FREIGHT">
+                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>Freight}"/>
+                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/FREIGHT_FLG">
+                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>FreightFlag}"/>
+                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/INSURANCE">
+                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Insurance}"/>
+                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/INSURANCE_FLG">
+                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>InsuranceFlag}"/>
+                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/FR_INS">
+                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>FreightAndInsurance}"/>
+                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/FR_INS_FLG">
+                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>FreightAndInsuranceFlag}"/>
+                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/CERTIFICATE_FEE">
+                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>CertificateFee}"/>
+                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/CERTIF_FEE_FLG">
+                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>CertificateFeeFlag}"/>
+                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/CERT_ORG_FEE">
+                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>CertificateOfOriginFee}"/>
+                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/CERT_ORG_FEE_FLG">
+                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>CertificateOfOriginFeeFlag}"/>
+                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/OTHERS">
+                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Others}"/>
+                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/OTHERS_FLG">
+                                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>OthersFlag}"/>
+                                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/PERSON_IN_CHRG">
+                                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>PersonInChargeOfInvoice}"/>
+                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/REMARKS">
+                                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Remarks}"/>
+                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/LC_NO">
+                                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>LCNumber}"/>
+                                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/LC_DATE">
+                                                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>LCDate}"/>
+                                                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/ISSUING_BANK">
+                                                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>IssuingBank}"/>
+                                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/TOTAL_CASE">
+                                                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>TotalCase}"/>
+                                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/NET_WEIGHT">
+                                                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>NetWeight}"/>
+                                                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/NET_WEIGHT_UOM">
+                                                                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>NetWeightUnit}"/>
+                                                                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/GROSS_WEIGHT">
+                                                                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>GrossWeight}"/>
+                                                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/GROSS_WEIGHT_UOM">
+                                                                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>GrossWeightUnit}"/>
+                                                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0053/VOLUME">
+                                                                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Volume}"/>
+                                                                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0053/VOLUME_UOM">
+                                                                                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>VolumeUnit}"/>
+                                                                                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0053/POSID">
+                                                                                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>ProjectDefinition}"/>
+                                                                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0053/ZZH_D_FLG">
+                                                                                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>DeletionFlag}"/>
+                                                                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0054/ZZH_IDATS">
+                                                                                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>CreationDate}"/>
+                                                                                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0054/ZZH_IUZEIT">
+                                                                                                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>CreationTime}"/>
+                                                                                                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0054/ZZH_IUSR">
+                                                                                                                                                                                                                                                                                                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                                                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0054/ZZH_IREPID">
+                                                                                                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>CreatedProgram}"/>
+                                                                                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0054/ZZH_UDATS">
+                                                                                                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>ChangedDate}"/>
+                                                                                                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0054/ZZH_UUZEIT">
+                                                                                                                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>ChangedTime}"/>
+                                                                                                                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                                                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0054/ZZH_UUSR">
+                                                                                                                                                                                                                                                                                                                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                                                                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                                                                                                <Annotations Target="ZAPIHPS999.ZTHBT0054/ZZH_UREPID">
+                                                                                                                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>ChangedProgram}"/>
+                                                                                                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                                                                                                    <Annotations Target="ZAPIHPS999.ZTHBT0054/INVOICE_ITM">
+                                                                                                                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>InvoiceItem}"/>
+                                                                                                                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                                                                                                                        <Annotations Target="ZAPIHPS999.ZTHBT0054/SALES_DOC">
+                                                                                                                                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>SalesDocument}"/>
+                                                                                                                                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                                                                                                                                            <Annotations Target="ZAPIHPS999.ZTHBT0054/SALES_DOC_ITEM">
+                                                                                                                                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>SalesDocumentItem}"/>
+                                                                                                                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                                                                                                                <Annotations Target="ZAPIHPS999.Countries">
+                                                                                                                                                                                                                                                                                                                                                                    <Annotation Term="UI.Identification">
+                                                                                                                                                                                                                                                                                                                                                                        <Collection>
+                                                                                                                                                                                                                                                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                                                                                                                                                                                                                                                <PropertyValue Property="Value" Path="name"/>
+                                                                                                                                                                                                                                                                                                                                                                            </Record>
+                                                                                                                                                                                                                                                                                                                                                                        </Collection>
+                                                                                                                                                                                                                                                                                                                                                                    </Annotation>
+                                                                                                                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                                                                                                                <Annotations Target="ZAPIHPS999.Countries/name">
+                                                                                                                                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                                                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                                                                                                                    <Annotations Target="ZAPIHPS999.Countries/descr">
+                                                                                                                                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                                                                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                                                                                                                                        <Annotations Target="ZAPIHPS999.Countries/code">
+                                                                                                                                                                                                                                                                                                                                                                            <Annotation Term="Common.Text" Path="name"/>
+                                                                                                                                                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>CountryCode}"/>
+                                                                                                                                                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                                                                                                                                                            <Annotations Target="ZAPIHPS999.Countries_texts/locale">
+                                                                                                                                                                                                                                                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                                                                                                                                                                                                                                                                                                                                </Annotations>
+                                                                                                                                                                                                                                                                                                                                                                                <Annotations Target="ZAPIHPS999.Countries_texts/name">
+                                                                                                                                                                                                                                                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                                                                                                                                                                                                                                                                                                                    </Annotations>
+                                                                                                                                                                                                                                                                                                                                                                                    <Annotations Target="ZAPIHPS999.Countries_texts/descr">
+                                                                                                                                                                                                                                                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                                                                                                                                                                                                                                                                                                                        </Annotations>
+                                                                                                                                                                                                                                                                                                                                                                                        <Annotations Target="ZAPIHPS999.Countries_texts/code">
+                                                                                                                                                                                                                                                                                                                                                                                            <Annotation Term="Common.Text" Path="name"/>
+                                                                                                                                                                                                                                                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>CountryCode}"/>
+                                                                                                                                                                                                                                                                                                                                                                                            </Annotations>
+                                                                                                                                                                                                                                                                                                                                                                                        </Schema>
+                                                                                                                                                                                                                                                                                                                                                                                    </edmx:DataServices>
+                                                                                                                                                                                                                                                                                                                                                                                </edmx:Edmx>
