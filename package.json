@@ -6,13 +6,18 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@sap/audit-logging": "^5.7.1",
     "@sap/cds": "^6",
+    "@sap/xsenv": "^3.4.0",
+    "@sap/xssec": "^3.2.18",
     "express": "^4",
-    "hdb": "^0.19.0"
+    "hdb": "^0.19.0",
+    "passport": "^0.6.0"
   },
   "scripts": {
-    "start": "cds-serve",
-    "watch-basic.list": "cds watch --open basic.list/webapp/index.html?sap-ui-xx-viewCache=false"
+    "start": "NODE_END=production cds-serve",
+    "watch-basic.list": "cds watch --open basic.list/webapp/index.html?sap-ui-xx-viewCache=false",
+    "deploy-app": "npm start --prefix app"
   },
   "cds": {
     "build": {
@@ -30,6 +35,9 @@
     "requires": {
       "db": {
         "kind": "hana-cloud"
+      },
+      "uaa": {
+        "kind": "xsuaa"
       }
     }
   },
